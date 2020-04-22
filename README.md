@@ -2,7 +2,8 @@
 基于Python的自动查询同词根英语单词及释义，并将其写入Markdown笔记用以记录
 
 代码中需要改动的部分是：
-> WordRoot类中的self.path改为自己的路径下的.md文件
+> WordRoot类中的self.path改为自己的路径下的.md文件，如我的路径是D:\Markdown\words.md
+> 注：md文件不存在会自动创建的，不用担心，只需要改路径和文件名就行了
 
 操作：
 >改动上述部分后，运行py文件，输入想查询的单词即可
