@@ -55,7 +55,7 @@ def run():
         if wr.word_root == '':
             print("抱歉，这个单词目前没有找到词根！")
             continue
-        print('查询到 {} 的词根是 {}'.format(word, wr.word_root))
+        print('查询到 {} 的词根是：{}，释义为：{}'.format(word, wr.word_root,wr.root_meaning))
         print('查询到的同根词有：')
         for i in range(len(wr.sim_words)):
             print('{}. {}'.format(i+1,wr.sim_words[i]))
