@@ -1,10 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
 import os
+import time
 
 class WordRoot:
 
-    def __init__(self,word):
+    def __init__(self, word):
+        self.time = time.strftime("%Y-%m-%d %H:%M:%S %A", time.localtime())
         self.path = 'D:\Markdown\words.md'
         self.word = word
         self.base_url = 'http://www.cgdict.com/index.php?app=cigen&ac=word&w={}'.format(word)
@@ -40,9 +42,11 @@ class WordRoot:
         with open(self.path,'a+') as f:
             f.write(title)
             for i in words_meanings:
-                f.write('|{}|{}|\n'.format(i[0],i[1]))
-
-if __name__ == '__main__':
+                f.write('|{}|{}|\n'.format(i[0], i[1]))
+                
+def run():
+    with open("D:\Markdown\words.md",'a+') as f:
+        f.write('\n## {}'.format(time.strftime("%Y-%m-%d %H:%M:%S %A", time.localtime())))
     while True:
         word = input('请输入您要查询的单词：')
         if word == '-1':
@@ -51,9 +55,18 @@ if __name__ == '__main__':
         if wr.word_root == '':
             print("抱歉，这个单词目前没有找到词根！")
             continue
-        do = input('查询到 {} 的词根是 {} ，请问是否写入笔记： '.format(word,wr.word_root))
+        print('查询到 {} 的词根是 {}'.format(word, wr.word_root))
+        print('查询到的同根词有：')
+        for i in range(len(wr.sim_words)):
+            print('{}. {}'.format(i+1,wr.sim_words[i]))
+        do = input('请问是否写入笔记： ')
         if do == '1':
             wr.get_mk()
             print('词根 {} 已写入笔记！！！'.format(wr.word_root))
         else: print('并未写入笔记！！！')
+
+if __name__ == '__main__':
+    
+    run()
+
 
