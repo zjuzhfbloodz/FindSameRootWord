@@ -39,7 +39,7 @@ class WordRoot:
         for i in self.sim_words:
             words_meanings.append((i.split(' ')[0],i.split(' ')[2]))
         title = '\n### {} ：{}\n|单词|释义|\n|:---:|:---:|\n'.format(self.word_root,self.root_meaning)
-        with open(self.path,'a+',encoding = 'GB2312') as f:
+        with open(self.path,'a+') as f:
             f.write(title)
             for i in words_meanings:
                 f.write('|{}|{}|\n'.format(i[0], i[1]))
@@ -52,7 +52,7 @@ def run():
     write_time = input("请问是否要记录当前的时间：")
     now_time = time.strftime("%Y-%m-%d %H:%M:%S %A", time.localtime())
     if write_time == '1':
-        with open("D:\Markdown\words.md",'a+',encoding = 'GB2312') as f:
+        with open("D:\Markdown\words.md",'a+') as f:
             f.write('\n## {}'.format(now_time))
         print('当前时间是：{}，已写入markdown文件！\n'.format(now_time))
     else: print("本次笔记未记录时间！！！\n")
